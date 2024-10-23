@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenePattern Matrix Clustering</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>GenePattern Matrix Clustering</h1>
+        <form action="/cluster" method="POST" enctype="multipart/form-data">
+            <label for="file">Upload Genetic Data (CSV):</label>
+            <input type="file" id="file" name="file" required><br><br>
+            
+            <label for="clusters">Number of Clusters:</label>
+            <input type="number" id="clusters" name="clusters" min="2" max="10" value="5"><br><br>
+
+            <label for="algorithm">Choose Clustering Algorithm:</label>
+            <select id="algorithm" name="algorithm">
+                <option value="kmeans">KMeans</option>
+                <option value="hierarchical">Agglomerative</option>
+            </select><br><br>
+
+            <button type="submit">Run Clustering</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h2>Clustering Results:</h2>
+            <img src="{{ result.image_url }}" alt="Clustering Results">
+            <p>{{ result.message }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
